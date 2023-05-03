@@ -1,6 +1,5 @@
-# Auto24v1
+**Auto24.ee Web Scraper**
 
-Auto24.ee Web Scraper
 This is a web scraper that extracts data about passenger cars and SUVs listed on Auto24.ee, a popular used car selling platform in Estonia. The script uses Puppeteer to automate the browsing and scraping process, and it can be configured to send an email notification when a new car matching the search criteria is found.
 
 
