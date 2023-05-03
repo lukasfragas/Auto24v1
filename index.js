@@ -18,9 +18,11 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
+    type: "login", // add this line
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
+  authMethod: "PLAIN", // add this line
 });
 
 async function sendEmail(to, subject, text) {
