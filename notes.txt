@@ -1,0 +1,90 @@
+gmai, account, notifications, all!
+
+
+https://protonvpn.com/ !!!
+
+https://www.jetbrains.com/ IDE!@!!
+
+const browser = await puppeteer.launch({
+  headless: 'new',
+  // `headless: true` (default) enables old Headless;
+  // `headless: 'new'` enables new Headless;
+  // `headless: false` enables “headful” mode.
+});
+
+const page = await browser.newPage();
+await page.goto('https://developer.chrome.com/');
+
+// …
+
+await browser.close();
+
+
+
+
+
+previous
+
+
+const intervals = [
+  { start: '0 5 * * *', end: '10 10 * * *', min: 3, max: 6  },
+  { start: '0 10 * * *', end: '0 12 * * *', min: 3, max: 6 },
+  { start: '0 12 * * *', end: '0 14 * * *', min: 1, max: 3 },
+  { start: '0 14 * * *', end: '0 17 * * *', min: 3, max: 6 },
+  { start: '0 17 * * *', end: '0 19 * * *', min: 1, max: 3 },
+  { start: '0 19 * * *', end: '0 23 * * *', min: 3, max: 6 },
+  { start: '0 23 * * *', end: '0 5 * * *', min: 3, max: 6 },
+];
+
+
+function scheduleNextRun(scheduleTime, min, max) {
+  const randomInt = randomInterval(min, max);
+  const nextRunTime = new Date(scheduleTime.getTime() + randomInt);
+  const timeLeft = getTimeLeft(nextRunTime - new Date());
+
+  console.log(`Current time: ${formatDate(new Date())}`);
+  console.log(`Scheduled time: ${formatDate(scheduleTime)}`);
+  console.log(`Random interval: ${randomInt} ms`);
+  console.log(`Next run time: ${formatDate(nextRunTime)}`);
+  console.log(`Time left: ${timeLeft}`);
+
+  return schedule.scheduleJob(nextRunTime, () => {
+    scrapeVehicleData();
+    scheduleNextRun(nextRunTime, min, max);
+  });
+}
+
+
+intervals.forEach(({ start, end, min, max }) => {
+  const startDate = new Date();
+  const endDate = new Date();
+  const [startHour, startMinute] = start.split(' ').map(Number);
+  const [endHour, endMinute] = end.split(' ').map(Number);
+
+  startDate.setHours(startHour, startMinute, 0, 0);
+  endDate.setHours(endHour, endMinute, 0, 0);
+
+  if (startDate > endDate) {
+    endDate.setDate(endDate.getDate() + 1);
+  }
+
+  const now = new Date();
+  const currentHourMinute = now.getHours() * 60 + now.getMinutes();
+  const startHourMinute = startHour * 60 + startMinute;
+  const endHourMinute = endHour * 60 + endMinute;
+
+  if (currentHourMinute >= startHourMinute && currentHourMinute <= endHourMinute) {
+    scheduleNextRun(now, min, max);
+  }
+
+  const startJob = schedule.scheduleJob({ start: startDate, rule: '0 ' + start }, () => {
+    console.log(`Starting scheduled job at ${startDate.toLocaleString()}`);
+    scheduleNextRun(startDate, min, max);
+  });
+
+  const endJob = schedule.scheduleJob(endDate, () => {
+    console.log(`Ending scheduled job at ${endDate.toLocaleString()}`);
+    startJob.cancel();
+    endJob.cancel();
+  });
+});
