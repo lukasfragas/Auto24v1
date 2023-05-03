@@ -24,7 +24,7 @@ The script will run indefinitely until you stop it. Press "ctrl + C" in the term
 
 Important points from the code
 The script navigates to https://eng.auto24.ee/kasutatud/nimekiri.php?bn=2&a=101102&ssid=98937306&ae=1&af=50&otsi=search&ak=0 to scrape newly listed passenger cars and SUVs. The &af= parameter can be changed to show a different number of results per page (20, 50, 100), or navigate to the website, change search parameters and replace the link.
-The getRandomInterval() function determines a random interval between 60 and 300 seconds to wait before reloading the page to avoid being detected as a bot. Currently it is set to re-launch the script from 30 to 600 seconds. Change the interval as you please.
+The getRandomInterval() function determines a random interval between 60 and 300 seconds to wait before reloading the page to avoid being detected as a bot. Currently it is set to re-launch the script from 30 to 600 seconds (1 to 5 minutes). Change the interval as you please.
 The scheduleJob() function schedules the script to run at random intervals and logs the time until the next run.
 The headless: 'false' option can be used to show the browser window while running the script. This is useful for debugging and testing.
 To prevent your IP address from being blocked during testing, you can use a VPN such as the ProtonVPN desktop app.
