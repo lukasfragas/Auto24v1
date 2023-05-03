@@ -1,2 +1,4 @@
 # Auto24v1
- puppeteer scraper 
+
+Puppeteer Scrapper for https://www.auto24.ee/ website
+

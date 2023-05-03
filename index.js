@@ -6,13 +6,13 @@ import fs from 'fs';
 import nodemailer from "nodemailer";
 puppeteer.use(AdblockerPlugin());
 
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+const EMAIL_TO = process.env.EMAIL_TO;
+
 import searchParams from './ricardui/searchCars.js';
 
 // https://www.youtube.com/watch?v=ud3j4bCUD50&t=305s&ab_channel=bufahad
-const EMAIL_USER = 'info.vilbeta@gmail.com';
-const EMAIL_PASS = 'sqbtmvithhnqekah';
-const EMAIL_TO = 'ricardas.jasinskas2@gmail.com';
-
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
