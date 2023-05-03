@@ -3,6 +3,7 @@
 Auto24.ee Web Scraper
 This is a web scraper that extracts data about passenger cars and SUVs listed on Auto24.ee, a popular used car selling platform in Estonia. The script uses Puppeteer to automate the browsing and scraping process, and it can be configured to send an email notification when a new car matching the search criteria is found.
 
+
 **Prerequisites**
 
 Node.js v12 or later installed on your computer.
@@ -14,6 +15,8 @@ A Gmail account to use for sending email notifications.
 (Optional) JetBrains IDE to run the script on low-performance computers.
 
 (Optional) If you want to see the browser window while running the script, set headless: 'false' when launching Puppeteer.
+
+
 
 
 **How to use**
@@ -35,6 +38,7 @@ Run the script by running npm start in the terminal
 The script will start browsing Auto24.ee and extract the data about newly listed cars that match your searchParams criteria. If a match is found, an email notification will be sent to the recipient email address.
 
 The script will run indefinitely until you stop it. Press "ctrl + C" in the terminal to terminate the script.
+
 
 
 
